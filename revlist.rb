@@ -31,17 +31,40 @@ class Stack
 
 end
 
- def reverse_list(list)
-    # ADD CODE HERE
-        stack = Stack.new
-        while list
-            stack.push(list.value)
-            list = list.next_node
-        end
 
-        return stack.data
+######################################
+    # Working revlist method
 
+
+ # def reverse_list(list)
+ #    # ADD CODE HERE
+ #        stack = Stack.new
+ #        while list
+ #            stack.push(list.value)
+ #            list = list.next_node
+ #        end
+
+ #        return stack.data
+
+ #    end
+####################################
+
+def reverse_list(list, previous = nil)   
+    if list
+        holder = list.next_node
+        list.next_node = previous
+        reverse_list(holder, list)
     end
+end
+# def reverse_list(list, previous=nil)
+#   if list
+#     next_node = list.next_node
+#     list.next_node = previous
+#     reverse_list(next_node, list)
+#   end
+# end
+
+
 
 
 def print_values(list_node)
@@ -59,8 +82,9 @@ node2 = LinkedListNode.new(99, node1)
 node3 = LinkedListNode.new(12, node2)
 
 print_values(node3)
-revlist = reverse_list(node3)
-print_values(revlist)
+reverse_list(node3)
+puts "-------------------------"
+print_values(node1)
 
 
 # print_values(stack)
